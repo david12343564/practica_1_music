@@ -84,15 +84,4 @@ class musicProvider with ChangeNotifier {
       });
     }
   }
-
-  Future<dynamic> searchSong(String songPath) async {
-    File songFile = File(songPath);
-    Uint8List fileByte = songFile.readAsBytesSync();
-    String songStr = base64Encode(fileByte);
-    dynamic response = await _sendAPI(songStr);
-    dynamic cancion = await response['result'];
-    addSong(cancion);
-    notifyListeners();
-    return cancion;
-  }
 }
