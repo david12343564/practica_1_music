@@ -95,19 +95,4 @@ class musicProvider with ChangeNotifier {
     notifyListeners();
     return cancion;
   }
-
-  Future<dynamic> _sendAPI(String file) async {
-    var url = Uri.parse('https://api.audd.io/');
-    var resp = await http.post(url, body: {
-      'api_token': 'ee30b95c95796e794049a9f83f8dc667',
-      'return': 'apple_music,spotify,deezer',
-      'audio': file,
-      'method': 'recognize',
-    });
-    if (resp.statusCode == 200) {
-      return jsonDecode(resp.body);
-    } else {
-      throw Exception('Fallo al recuperar la cancion');
-    }
-  }
 }
